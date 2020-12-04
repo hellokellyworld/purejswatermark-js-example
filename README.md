@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to Use
+
+```sh
+npm install
+npm audit fix
+npm run start
+```
+
 ## Live Demo
 
 A live demo of this site is available [here](movie-demo-3.paigen11.now.sh).
@@ -10,11 +18,11 @@ This is the third demo created for the conference talk: ["Responsive Web Design 
 
 ## Technologies of Note Powering This App
 
-* ReactJS v16.9 (courtesy of the Create React App)
-* React-socks
-* [React-transition-group](https://reactcommunity.org/react-transition-group/) for animations in React
-* [Node-sass](https://www.npmjs.com/package/node-sass) for CSS styles (with both Flexbox and CSS Grid)
-* [The Movie Database (TMDB)](https://developers.themoviedb.org/3/getting-started/introduction) API for the movie data
+- ReactJS v16.9 (courtesy of the Create React App)
+- React-socks
+- [React-transition-group](https://reactcommunity.org/react-transition-group/) for animations in React
+- [Node-sass](https://www.npmjs.com/package/node-sass) for CSS styles (with both Flexbox and CSS Grid)
+- [The Movie Database (TMDB)](https://developers.themoviedb.org/3/getting-started/introduction) API for the movie data
 
 ## Available Scripts
 

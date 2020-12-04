@@ -83,7 +83,7 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  appFonts:resolveApp('src/lib-watermark/dist/plugin-print/fonts'),
+  appFonts:resolveApp('node_modules/purejswatermark/dist/fonts'),
   appPublicFonts:resolveApp('public/fonts')
 };
 

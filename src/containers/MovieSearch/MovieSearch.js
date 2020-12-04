@@ -3,6 +3,9 @@ import { Breakpoint } from 'react-socks';
 import * as movieAPI from '../../services/movieAPI';
 import MovieList from '../../components/Movie/MovieList';
 import './MovieSearch.scss';
+import { BASE_POSTER_PATH } from '../../constants/Constants';
+import watermark from 'purejswatermark/dist/watermark';
+const logo = '/logo192.png';
 
 export default class MovieSearch extends Component {
   state = {
@@ -11,7 +14,29 @@ export default class MovieSearch extends Component {
     error: false,
     loading: false,
     prevSearch: null,
+    newMovies:[],
   };
+
+  async processMovie(movie) {
+    try {
+      return new Promise(async (resolve, reject) => {
+        try {
+          let moviePath = `${BASE_POSTER_PATH}/w300${movie.poster_path}`;
+          if(!movie.poster_path)moviePath="/wutu.jpg"
+          const data = await watermark.addWatermark(moviePath, logo);
+          //const data = await watermark.addTextWatermark(moviePath,{text: "Kelly Kang", textSize: 8})
+          resolve(data);
+        } catch(error) {
+          console.log(error)
+          throw new Error('cannot get watermark image');
+        }
+      }).then((data) => {
+        return Promise.resolve(data);
+      });
+    } catch (err) {
+      console.log('error getting watermark', err);
+    }
+  }
 
   handleChange = event => {
     event.preventDefault();
@@ -23,19 +48,32 @@ export default class MovieSearch extends Component {
     try {
       this.setState({ loading: true });
       const movies = await movieAPI.searchMovies(this.state.value);
-      this.setState({
-        movies,
-        loading: false,
-        prevSearch: this.state.value,
-        value: '',
+      Promise.all(
+        movies.map((movie) => {
+          return this.processMovie(movie);
+        })
+      ).then((newImages) => {
+        this.setState({
+          movies,
+          loading: false,
+          prevSearch: this.state.value,
+          value: '',
+          newMovies:newImages.length>0 ? newImages:[]
+        });
+      //   this.setState({
+      //     movies: movies,
+      //     loading: false,
+      //     newMovies: newImages,
+      //   });
       });
+ 
     } catch (err) {
       this.setState({ error: true, loading: false });
     }
   };
 
   render() {
-    const { movies, error, loading, prevSearch } = this.state;
+    const { movies, error, loading, prevSearch,newMovies } = this.state;
     let movieInfo = null;
 
     if (movies) {
@@ -51,6 +89,7 @@ export default class MovieSearch extends Component {
               loading={this.state.loading}
               error={this.state.error}
               movies={this.state.movies}
+              newMovies = {this.state.newMovies}
             />
           </>
         );

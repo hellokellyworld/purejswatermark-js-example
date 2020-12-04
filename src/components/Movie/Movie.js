@@ -1,19 +1,8 @@
 import React from 'react';
 import { Breakpoint } from 'react-socks';
-import { BASE_POSTER_PATH } from '../../constants/Constants';
 import './MovieList.scss';
 
-
-//var watermark = require("../../lib-watermark/dist/watermark/index.js");
-         
 const movie = props => {
-  // const imgPath=`${BASE_POSTER_PATH}/w300${props.poster}`;
-  // const imageWithText = await watermark.addTextWatermark(
-  //   imgPath,
-  //   {text: "Kelly Kang", textSize: 8}
-  // );
-
-  // if(imageWithText){
   return(
   <>
     <Breakpoint medium up>
@@ -21,8 +10,6 @@ const movie = props => {
         {props.poster && (
           <img
             src={props.poster}
-            // src={`${BASE_POSTER_PATH}/w300${props.poster}`}//{imageWithText}//{`${BASE_POSTER_PATH}/w300${props.poster}`}
-            
             alt="movie poster"
             className="movie-poster"
           />
@@ -44,7 +31,6 @@ const movie = props => {
         {props.poster && (
           <img
             src={props.poster}
-            // src={`${BASE_POSTER_PATH}/w300${props.poster}`}//{imageWithText}//{`${BASE_POSTER_PATH}/w300${props.poster}`}
             alt="movie poster"
             className="movie-poster"
           />
@@ -61,9 +47,6 @@ const movie = props => {
     </Breakpoint>
   </>
   )
-  // } else{
-  //   return <></>
-  // }
         };
 
 export default movie;

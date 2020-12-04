@@ -29,7 +29,6 @@ export default class MovieList extends Component {
 
     if (!loading && !error && movies.length > 0) {
       movieInfo = movies.map((movie, index) => {
-        //console.log("poster path.........",movie.poster_path)
         return (
           <Card
             key={movie.id}
@@ -58,8 +57,6 @@ export default class MovieList extends Component {
     if (loading) {
       movieInfo = <h3>Loading movie data now...</h3>;
     }
-
-    console.log("this is movie info", movieInfo)
     return (
       <>
         <Breakpoint medium up>

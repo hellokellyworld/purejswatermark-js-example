@@ -48,7 +48,6 @@ export default class MovieList extends Component {
     const { error, loading, newMovies} = this.props;
     let movieInfo = null;
     if (!loading && !error  &&  newMovies.length>0) {
-      console.log("newMovies",newMovies.length)
       movieInfo = newMovies.map( ( newMovie,index) => {            
         return (
           <Card
